@@ -41,7 +41,7 @@ public class DefaultListableBeanFactoryTest {
             System.out.println("beanDefinitionName : " + beanDefinitionName);
         }
 
-        // 添加beanPostProcessors
+        // 添加beanPostProcessors，如果不添加BeanPostProcessors，则Bean1内的@Autowired不会生效，Bean1内无法加载Bean2
         beanFactory.addBeanPostProcessors(beanFactory.getBeansOfType(BeanPostProcessor.class).values());
 
         // 如果需要提前准备单例bean
