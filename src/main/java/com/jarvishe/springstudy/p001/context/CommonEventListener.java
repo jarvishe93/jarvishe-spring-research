@@ -3,6 +3,12 @@ package com.jarvishe.springstudy.p001.context;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+/**
+ * 事件监听器
+ *
+ * @author: heguoliang
+ * @date: 2023/1/30
+ */
 @Component
 public class CommonEventListener {
 

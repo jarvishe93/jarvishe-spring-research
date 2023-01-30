@@ -8,6 +8,12 @@ import org.springframework.context.annotation.AnnotationConfigUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * DefaultListableBeanFactory测试类
+ *
+ * @author: heguoliang
+ * @date: 2023/1/30
+ */
 public class DefaultListableBeanFactoryTest {
     public static void main(String[] args) {
         // 测试 DefaultListableBeanFactory

@@ -6,6 +6,12 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.IOException;
 
+/**
+ * springboot启动类
+ *
+ * @author: heguoliang
+ * @date: 2023/1/30
+ */
 @SpringBootApplication
 public class Application {
 
