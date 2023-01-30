@@ -14,10 +14,10 @@ import java.util.Locale;
 import java.util.Map;
 
 @SpringBootApplication
-public class JarvisheSpringStudyApplication {
+public class Application {
 
     public static void main(String[] args) throws IOException, NoSuchFieldException, IllegalAccessException {
-        ConfigurableApplicationContext context = SpringApplication.run(JarvisheSpringStudyApplication.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
         // context和beanFactory的关系
         Field field = DefaultSingletonBeanRegistry.class.getDeclaredField("singletonObjects");
         field.setAccessible(true);
