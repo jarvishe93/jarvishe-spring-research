@@ -1,4 +1,4 @@
-package com.jarvishe.springstudy.context;
+package com.jarvishe.springstudy.p001.context;
 
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;

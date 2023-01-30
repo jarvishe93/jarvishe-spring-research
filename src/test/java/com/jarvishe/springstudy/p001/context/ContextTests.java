@@ -1,13 +1,10 @@
-package com.jarvishe.springstudy;
+package com.jarvishe.springstudy.p001.context;
 
-import com.jarvishe.springstudy.p001.context.MyApplicationEvent;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.support.DefaultSingletonBeanRegistry;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.io.Resource;
 
@@ -16,7 +13,7 @@ import java.util.Locale;
 import java.util.Map;
 
 @SpringBootTest
-class ApplicationTests {
+class ContextTests {
 
     /**
      * ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
