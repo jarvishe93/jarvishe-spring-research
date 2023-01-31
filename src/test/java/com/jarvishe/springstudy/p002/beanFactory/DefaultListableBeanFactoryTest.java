@@ -9,6 +9,11 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.annotation.AnnotationConfigUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.AnnotationAwareOrderComparator;
+
+import javax.annotation.Resource;
+import java.util.Comparator;
+import java.util.Map;
 
 /**
  * DefaultListableBeanFactory测试类
@@ -27,6 +32,7 @@ public class DefaultListableBeanFactoryTest {
         AbstractBeanDefinition beanDefinition = beanDefinitionBuilder.getBeanDefinition();
         beanFactory.registerBeanDefinition("config", beanDefinition);
 
+        beanFactory.setDependencyComparator(AnnotationAwareOrderComparator.INSTANCE);
         // 为了使Bean1和Bean2也能添加进beanFactory里面，
         // 需要给beanFactory（实际是给beanFactory里面的BeanDefinitionRegistry）添加一些增强器，作用为补充一些bean的定义
         AnnotationConfigUtils.registerAnnotationConfigProcessors(beanFactory);
@@ -42,7 +48,11 @@ public class DefaultListableBeanFactoryTest {
         }
 
         // 添加beanPostProcessors，如果不添加BeanPostProcessors，则Bean1内的@Autowired不会生效，Bean1内无法加载Bean2
-        beanFactory.addBeanPostProcessors(beanFactory.getBeansOfType(BeanPostProcessor.class).values());
+        // beanFactory.addBeanPostProcessors(beanFactory.getBeansOfType(BeanPostProcessor.class).values());
+        beanFactory.getBeansOfType(BeanPostProcessor.class).values().stream().sorted(beanFactory.getDependencyComparator().reversed()).forEach(beanPostProcessor ->{
+            System.out.println("beanPostProcessor:" + beanPostProcessor);
+            beanFactory.addBeanPostProcessor(beanPostProcessor);
+        });
 
         // 如果需要提前准备单例bean
         beanFactory.preInstantiateSingletons();
@@ -57,6 +67,7 @@ public class DefaultListableBeanFactoryTest {
 
     }
 
+
     @Configuration
     static class Config {
         @Bean("bean1")
@@ -67,6 +78,16 @@ public class DefaultListableBeanFactoryTest {
         @Bean("bean2")
         public Bean2 initBean2() {
             return new Bean2();
+        }
+
+        @Bean("bean3")
+        public Bean3 initBean3() {
+            return new Bean3();
+        }
+
+        @Bean("bean4")
+        public Bean4 initBean4() {
+            return new Bean4();
         }
 
     }
@@ -82,11 +103,31 @@ public class DefaultListableBeanFactoryTest {
         private Bean2 getBean2() {
             return bean2;
         }
+
+        @Resource(name = "bean3")
+        // @Autowired
+        private InterClass interClass;
+
+        private InterClass getInterClass() {
+            return interClass;
+        }
     }
 
     static class Bean2 {
         public Bean2() {
             System.out.println("bean2初始化");
         }
+    }
+
+    interface InterClass {
+
+    }
+
+    static class Bean3 implements InterClass {
+
+    }
+
+    static class Bean4 implements InterClass {
+
     }
 }
