@@ -35,6 +35,7 @@ public class DefaultListableBeanFactoryTest {
         // 需要给beanFactory（实际是给beanFactory里面的BeanDefinitionRegistry）添加一些增强器，作用为补充一些bean的定义
         AnnotationConfigUtils.registerAnnotationConfigProcessors(beanFactory);
 
+
         // 使这些增强器发挥作用
         for (BeanFactoryPostProcessor postProcessor : beanFactory.getBeansOfType(BeanFactoryPostProcessor.class).values()) {
             postProcessor.postProcessBeanFactory(beanFactory);
