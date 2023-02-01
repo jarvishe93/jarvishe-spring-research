@@ -1,4 +1,4 @@
-package com.jarvishe.springstudy.p002.beanFactory;
+package com.jarvishe.springstudy.p002;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
@@ -12,8 +12,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.AnnotationAwareOrderComparator;
 
 import javax.annotation.Resource;
-import java.util.Comparator;
-import java.util.Map;
 
 /**
  * DefaultListableBeanFactory测试类
@@ -49,7 +47,7 @@ public class DefaultListableBeanFactoryTest {
 
         // 添加beanPostProcessors，如果不添加BeanPostProcessors，则Bean1内的@Autowired不会生效，Bean1内无法加载Bean2
         // beanFactory.addBeanPostProcessors(beanFactory.getBeansOfType(BeanPostProcessor.class).values());
-        beanFactory.getBeansOfType(BeanPostProcessor.class).values().stream().sorted(beanFactory.getDependencyComparator().reversed()).forEach(beanPostProcessor ->{
+        beanFactory.getBeansOfType(BeanPostProcessor.class).values().stream().sorted(beanFactory.getDependencyComparator().reversed()).forEach(beanPostProcessor -> {
             System.out.println("beanPostProcessor:" + beanPostProcessor);
             beanFactory.addBeanPostProcessor(beanPostProcessor);
         });
