@@ -2,6 +2,9 @@ package com.jarvishe.springstudy.p002;
 
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
@@ -15,11 +18,12 @@ import java.util.Arrays;
  * @date: 2023/2/1
  */
 public class ApplicationContextTest {
+
     public static void main(String[] args) {
         // testClassPathXmlApplicationContext();
-        testSelfReadClassPathXmlApplicationContext();
+        // testSelfReadClassPathXmlApplicationContext();
         // testFileSystemXmlApplicationContext();
-
+        testAnnotationConfigApplicationContext();
     }
 
     static void testSelfReadClassPathXmlApplicationContext() {
@@ -43,6 +47,29 @@ public class ApplicationContextTest {
         FileSystemXmlApplicationContext fileSystemXmlApplicationContext = new FileSystemXmlApplicationContext("src/main/resources/b01.xml");
         Arrays.stream(fileSystemXmlApplicationContext.getBeanDefinitionNames()).forEach(System.out::println);
         System.out.println(fileSystemXmlApplicationContext.getBean(Bean2.class).getBean1());
+    }
+
+    static void testAnnotationConfigApplicationContext() {
+        AnnotationConfigApplicationContext annotationConfigApplicationContext
+                = new AnnotationConfigApplicationContext(AnnotationConfig.class);
+        Arrays.stream(annotationConfigApplicationContext.getBeanDefinitionNames()).forEach(System.out::println);
+        System.out.println(annotationConfigApplicationContext.getBean(Bean2.class).getBean1());
+    }
+
+    @Configuration
+    static class AnnotationConfig {
+        @Bean
+        public Bean1 bean1() {
+            return new Bean1();
+        }
+
+        // todo 研究Bean1自动注入
+        @Bean
+        public Bean2 bean2(Bean1 bean1) {
+            Bean2 bean2 = new Bean2();
+            bean2.setBean1(bean1);
+            return bean2;
+        }
     }
 
     static class Bean1 {
