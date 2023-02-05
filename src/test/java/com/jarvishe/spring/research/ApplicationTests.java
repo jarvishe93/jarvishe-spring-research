@@ -1,4 +1,4 @@
-package com.jarvishe.springstudy;
+package com.jarvishe.spring.research;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

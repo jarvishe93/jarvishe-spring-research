@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.jarvishe</groupId>
-    <artifactId>jarvishe-spring-study</artifactId>
+    <artifactId>jarvishe-spring-research</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>jarvishe-spring-study</name>
-    <description>jarvishe-spring-study</description>
+    <name>jarvishe-spring-research</name>
+    <description>jarvishe-spring-research</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>

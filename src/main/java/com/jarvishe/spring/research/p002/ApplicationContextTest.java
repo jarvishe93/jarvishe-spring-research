@@ -1,4 +1,4 @@
-package com.jarvishe.springstudy.p002;
+package com.jarvishe.spring.research.p002;
 
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;

@@ -1,10 +1,8 @@
-package com.jarvishe.springstudy;
+package com.jarvishe.spring.research;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-
-import java.io.IOException;
 
 /**
  * springboot启动类
