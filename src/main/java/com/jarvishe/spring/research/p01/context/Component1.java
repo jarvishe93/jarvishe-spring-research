@@ -1,4 +1,4 @@
-package com.jarvishe.spring.research.p001.context;
+package com.jarvishe.spring.research.p01.context;
 
 import org.springframework.stereotype.Component;
 
