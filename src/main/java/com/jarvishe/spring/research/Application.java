@@ -2,7 +2,6 @@ package com.jarvishe.spring.research;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * springboot启动类
@@ -14,7 +13,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class Application {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
 }
