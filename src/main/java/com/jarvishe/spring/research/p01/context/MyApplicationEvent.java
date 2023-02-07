@@ -5,7 +5,7 @@ import org.springframework.context.ApplicationEvent;
 /**
  * 事件器
  *
- * @author: heguoliang
+ * @author: jarvis
  * @date: 2023/1/30
  */
 public class MyApplicationEvent extends ApplicationEvent {

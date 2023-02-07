@@ -9,7 +9,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 /**
  * springboot启动类
  *
- * @author: heguoliang
+ * @author: jarvis
  * @date: 2023/1/30
  */
 @SpringBootApplication
