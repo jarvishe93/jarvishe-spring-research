@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 /**
  * 测试@Component注解类
  *
- * @author: heguoliang
+ * @author: jarvis
  * @date: 2023/1/30
  */
 @Component
