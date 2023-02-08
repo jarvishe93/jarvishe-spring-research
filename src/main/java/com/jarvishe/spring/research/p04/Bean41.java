@@ -25,11 +25,13 @@ public class Bean41 {
     @Autowired
     public void setBean42(Bean42 bean42) {
         logger.info("》》》》》》》》》》》@Autowired生效 setBean42:{}", bean42);
+        this.bean42 = bean42;
     }
 
     @Resource
     public void setBean43(Bean43 bean43) {
         logger.info("》》》》》》》》》》》@Resource生效 setBean43:{}", bean43);
+        this.bean43 = bean43;
     }
 
     @Autowired
@@ -46,5 +48,14 @@ public class Bean41 {
     @PreDestroy
     public void preDestroy() {
         logger.info("》》》》》》》》》》》@PreDestroy生效");
+    }
+
+    @Override
+    public String toString() {
+        return "Bean41{" +
+                "bean42=" + bean42 +
+                ", bean43=" + bean43 +
+                ", home='" + home + '\'' +
+                '}';
     }
 }
