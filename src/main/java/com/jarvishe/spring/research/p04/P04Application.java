@@ -5,13 +5,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.PropertyValues;
 import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.springframework.beans.factory.annotation.InjectionMetadata;
+import org.springframework.beans.factory.config.DependencyDescriptor;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor;
 import org.springframework.context.annotation.CommonAnnotationBeanPostProcessor;
 import org.springframework.context.annotation.ContextAnnotationAutowireCandidateResolver;
 import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.core.MethodParameter;
 import org.springframework.core.env.StandardEnvironment;
 
+import javax.annotation.Resource;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
@@ -44,22 +48,40 @@ public class P04Application {
 
         // beanPostProcessor.postProcessProperties(null, bean41, "bean41");
         // 手写执行内部方法，代替 postProcessProperties方法
-        Method findAutowiringMetadata = AutowiredAnnotationBeanPostProcessor.class.getDeclaredMethod("findAutowiringMetadata", String.class, Class.class, PropertyValues.class);
-        findAutowiringMetadata.setAccessible(true);
-        InjectionMetadata metadata = (InjectionMetadata) findAutowiringMetadata.invoke(beanPostProcessor, "bean41", Bean41.class, null);
+        // Method findAutowiringMetadata = AutowiredAnnotationBeanPostProcessor.class.getDeclaredMethod("findAutowiringMetadata", String.class, Class.class, PropertyValues.class);
+        // findAutowiringMetadata.setAccessible(true);
+        // InjectionMetadata metadata = (InjectionMetadata) findAutowiringMetadata.invoke(beanPostProcessor, "bean41", Bean41.class, null);
+        // metadata.inject(bean41, "bean41", null);
+        // System.out.println(bean41);
 
+        // 或者用反射也可以
         // Method inject = InjectionMetadata.class.getDeclaredMethod("inject", Object.class, String.class, PropertyValues.class);
         // inject.setAccessible(true);
         // inject.invoke(metadata, bean41, "bean41", null);
-        metadata.inject(bean41, "bean41", null);
-        System.out.println(bean41);
-        System.out.println();
 
+        // @Resource注解相关
         // CommonAnnotationBeanPostProcessor annotationBeanPostProcessor = new CommonAnnotationBeanPostProcessor();
         // annotationBeanPostProcessor.setBeanFactory(beanFactory);
         // annotationBeanPostProcessor.postProcessProperties(null, bean41, "bean41");
         // System.out.println(bean41);
 
+        // 手动注入成员变量
+        Field field43 = Bean41.class.getDeclaredField("bean43");
+        DependencyDescriptor dd43 = new DependencyDescriptor(field43, true);
+        Object o43 = beanFactory.doResolveDependency(dd43, null, null, null);
+        System.out.println(o43);
+
+        // 手动注入方法上的参数
+        Method method42 = Bean41.class.getDeclaredMethod("setBean42", Bean42.class);
+        DependencyDescriptor dd42 = new DependencyDescriptor(new MethodParameter(method42, 0), true);
+        Object o42 = beanFactory.doResolveDependency(dd42, null, null, null);
+        System.out.println(o42);
+
+        // 手动值注入
+        Method methodHome = Bean41.class.getDeclaredMethod("setJavaHome", String.class);
+        DependencyDescriptor ddHome = new DependencyDescriptor(new MethodParameter(methodHome, 0), true);
+        Object oHome = beanFactory.doResolveDependency(ddHome, null, null, null);
+        System.out.println(oHome);
     }
 
     private static void test1() {
