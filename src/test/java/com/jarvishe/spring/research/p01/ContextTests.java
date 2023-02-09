@@ -1,4 +1,4 @@
-package com.jarvishe.spring.research.p01.context;
+package com.jarvishe.spring.research.p01;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
