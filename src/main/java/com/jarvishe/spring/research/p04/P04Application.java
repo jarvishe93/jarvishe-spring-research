@@ -2,9 +2,7 @@ package com.jarvishe.spring.research.p04;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.PropertyValues;
 import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
-import org.springframework.beans.factory.annotation.InjectionMetadata;
 import org.springframework.beans.factory.config.DependencyDescriptor;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor;
@@ -14,7 +12,6 @@ import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.env.StandardEnvironment;
 
-import javax.annotation.Resource;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
